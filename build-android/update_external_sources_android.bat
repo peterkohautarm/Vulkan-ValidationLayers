@@ -341,7 +341,7 @@ goto:eof
    cd %VULKAN_HEADERS_DIR%
    git clone https://github.com/KhronosGroup/Vulkan-Headers.git .
    git checkout %VULKAN_HEADERS_REVISION%
-   if not exist %VULKAN_HEADERS_DIR%\common (
+   if not exist %VULKAN_HEADERS_DIR%\include (
       echo vulkan-headers source download failed!
       set errorCode=1
    )
