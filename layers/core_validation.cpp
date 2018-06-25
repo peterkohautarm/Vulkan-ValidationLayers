@@ -2300,7 +2300,8 @@ VKAPI_ATTR VkResult VKAPI_CALL CreateDevice(VkPhysicalDevice gpu, const VkDevice
 
     device_data->instance_data = instance_data;
     // Setup device dispatch table
-    layer_init_device_dispatch_table(*pDevice, &device_data->dispatch_table, fpGetDeviceProcAddr);
+    InitLayerDeviceDispatchTable(*pDevice, &device_data->dispatch_table, fpGetDeviceProcAddr, pCreateInfo->enabledExtensionCount,
+                                 pCreateInfo->ppEnabledExtensionNames);
     device_data->device = *pDevice;
     // Save PhysicalDevice handle
     device_data->physical_device = gpu;
