@@ -624,7 +624,8 @@ VKAPI_ATTR VkResult VKAPI_CALL vkCreateDevice(VkPhysicalDevice physicalDevice, c
             assert(my_device_data != nullptr);
 
             my_device_data->report_data = layer_debug_utils_create_device(my_instance_data->report_data, *pDevice);
-            layer_init_device_dispatch_table(*pDevice, &my_device_data->dispatch_table, fpGetDeviceProcAddr);
+            InitLayerDeviceDispatchTable(*pDevice, &my_device_data->dispatch_table, fpGetDeviceProcAddr,
+                                         pCreateInfo->enabledExtensionCount, pCreateInfo->ppEnabledExtensionNames);
 
             my_device_data->api_version = api_version;
             my_device_data->extensions = extensions;
