@@ -214,8 +214,8 @@ VKAPI_ATTR VkResult VKAPI_CALL CreateDevice(VkPhysicalDevice gpu, const VkDevice
     my_device_data->report_data = layer_debug_utils_create_device(my_instance_data->report_data, *pDevice);
 
     // Setup layer's device dispatch table
-    layer_init_device_dispatch_table(*pDevice, &my_device_data->dispatch_table, fpGetDeviceProcAddr);
-
+    InitLayerDeviceDispatchTable(*pDevice, &my_device_data->dispatch_table, fpGetDeviceProcAddr, pCreateInfo->enabledExtensionCount,
+                                 pCreateInfo->ppEnabledExtensionNames);
     DeviceExtensionWhitelist(pCreateInfo, *pDevice);
 
     // Set gpu for this device in order to get at any objects mapped at instance level
